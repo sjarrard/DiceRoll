@@ -46,7 +46,6 @@ public class DiceRoll extends AppCompatActivity {
 
         startInt = 1;
         endInt = 6;
-        //rollInt = 0;
 
         startString = startNum.getText().toString();
         endString = endNum.getText().toString();
@@ -59,10 +58,13 @@ public class DiceRoll extends AppCompatActivity {
         }
 
 
-
-        rollInt = dice.nextInt(endInt-startInt+1 ) + startInt;
-
-
+        if(endInt >= startInt) {
+            rollInt = dice.nextInt(endInt - startInt + 1) + startInt;
+        }
+        else {
+            errorFlag = true;
+            rollInt = 0;
+        }
         if(errorFlag)
             rollResult.setText("Error");
 
@@ -99,22 +101,34 @@ public class DiceRoll extends AppCompatActivity {
         }catch(NumberFormatException e){
             errorFlag = true;
         }
-
+        if(sizeOfDice < 1){
+            errorFlag = true;
+        }
         if(!errorFlag){
             for(int i = 0; i < numOfDice; i++){
                 int newRoll = dice.nextInt(sizeOfDice ) + 1;
                 rollResultList.add(newRoll);
             }
         }
+
+
         for(int k: rollResultList){
             if(outputString != ""){
                 outputString += ", ";
             }
-            rollResultSum += k;
-            outputString += Integer.toString(k);
+            if(k>0) {
+                rollResultSum += k;
+                outputString += Integer.toString(k);
+            }
+
         }
-        customSum.setText(Integer.toString(rollResultSum));
-        customResult.setText(outputString);
+        if(!errorFlag) {
+            customSum.setText(Integer.toString(rollResultSum));
+            customResult.setText(outputString);
+        }
+        else{
+            customResult.setText("Error");
+        }
     }
     public void clearAll(View v){
         rollResult.setText("");

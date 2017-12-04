@@ -18,7 +18,7 @@ package edu.pnw.spjarrar.diceroll;
 public class DiceRoll extends AppCompatActivity {
 
     EditText startNum, endNum, customInput;
-    TextView rollResult, customResult;
+    TextView rollResult, customResult, customSum;
 
 
 
@@ -32,7 +32,7 @@ public class DiceRoll extends AppCompatActivity {
         rollResult = findViewById(R.id.textViewResult);
         customInput = findViewById(R.id.editTextCustom);
         customResult = findViewById(R.id.textViewCustom);
-
+        customSum = findViewById(R.id.textViewSum);
 
     }
 
@@ -80,6 +80,7 @@ public class DiceRoll extends AppCompatActivity {
         ArrayList<Integer> rollResultList = new ArrayList<Integer>();
         int numOfDice = 1;
         int sizeOfDice = 12;
+        int rollResultSum = 0;
 
 
         boolean errorFlag = false;
@@ -109,9 +110,10 @@ public class DiceRoll extends AppCompatActivity {
             if(outputString != ""){
                 outputString += ", ";
             }
+            rollResultSum += k;
             outputString += Integer.toString(k);
         }
-
+        customSum.setText(Integer.toString(rollResultSum));
         customResult.setText(outputString);
     }
     public void clearAll(View v){

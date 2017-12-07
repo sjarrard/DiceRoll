@@ -39,7 +39,7 @@ public class MultipleDice {
                 if(outputString != "")
                     outputString += ", ";
                 Die freshDice = new Die(1,sizeOfDice);
-                int newRoll = freshDice.singleRoll() + 1;
+                int newRoll = freshDice.singleRoll();
                 //rollList.add(newRoll);
                 rollResultSum += newRoll;
                 outputString += Integer.toString(newRoll);

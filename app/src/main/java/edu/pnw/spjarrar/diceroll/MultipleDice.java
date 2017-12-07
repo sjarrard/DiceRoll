@@ -16,8 +16,8 @@ public class MultipleDice {
         String[] splitString = new String[2];
         //ArrayList<Integer> rollList = new ArrayList<>();
         rollResultSum = 0;
-        if (rawString.contains("d")) {
-            splitString = rawString.split("d");
+        if (rawString.contains("d") | rawString.contains("D")) {
+            splitString = rawString.split("(?i)d");
             properStringFormat = true;
         } else {
             properStringFormat = false;
@@ -54,7 +54,6 @@ public class MultipleDice {
     public String getOutputString() {
         return outputString;
     }
-
 
     public boolean isValidCustomRoll() {
         if(sizeOfDice > 0 & numOfDice > 0 & properStringFormat)

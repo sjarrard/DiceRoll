@@ -28,8 +28,6 @@ public class Die {
         endInt = end;
     }
 
-
-
     public int singleRoll(){
         int rollInt = 0;
         if(this.isValidDie()){
@@ -41,5 +39,4 @@ public class Die {
     public boolean isValidDie(){
         return (endInt >= startInt) & !errorFlag;
     }
-
 }
